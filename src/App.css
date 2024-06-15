@@ -1,0 +1,26 @@
+/* src/App.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+input[type="text"] {
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.editorContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
