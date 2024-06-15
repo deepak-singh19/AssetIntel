@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, Modifier, getDefaultKeyBinding, KeyBindingUtil, ContentBlock, DraftDecoratorType, EditorProps, CompositeDecorator, DraftHandleValue } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, Modifier, ContentBlock, DraftHandleValue } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
 // Custom style map for inline styles
