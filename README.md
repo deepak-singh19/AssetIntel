@@ -26,9 +26,9 @@ Run the development server:
 Usage
 > Typing: Start typing in the editor. Use the title input at the top to give your document a title.
 > Markdown-like Shortcuts:
-- # followed by a space to create a header.
-- * followed by a space for bold text.
-- ** followed by a space for red-line styled text.
-- *** followed by a space for underlined text.
-- ``` ` followed by a space for code blocks.
+- '#' followed by a space to create a header.
+- "*" followed by a space for bold text.
+- "**" followed by a space for red-line styled text.
+- "***" followed by a space for underlined text.
+- "``` `" followed by a space for code blocks.
 - Saving: Click the "Save" button to store the title and content in local storage.
