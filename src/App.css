@@ -1,26 +1,32 @@
-/* src/App.css */
 body {
   font-family: Arial, sans-serif;
 }
 
-.App {
+.my-editor {
   text-align: center;
 }
 
 input[type="text"] {
   font-size: 20px;
-  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-button {
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
+
 
 .editorContainer {
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+/* Custom CSS for block styles */
+.code-block-style {
+  background-color: yellow;
+  color: blue;
+  padding: 2px;
+}
+
+.header {
+  font-size: 40px;
+  font-weight: bold;
 }

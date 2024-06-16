@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, Modifier, ContentBlock, DraftHandleValue } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import '../App.css'; // Import the CSS file
 
 // Custom style map for inline styles
 const styleMap = {
@@ -12,40 +13,26 @@ const styleMap = {
   },
 };
 
-// Custom block rendering function to handle CODE block type
+// Custom block rendering function to handle CODE and HEADER block types
 const blockStyleFn = (contentBlock: ContentBlock) => {
   const type = contentBlock.getType();
   if (type === 'CODE') {
     return 'code-block-style';
-  }if (type === 'HEADER') {
+  }
+  if (type === 'header-one') {
     return 'header';
   }
   return '';
 };
 
-// Custom CSS for the code block
-const customCSS = `
-  .code-block-style {
-    background-color: yellow;
-    color: blue;
-    padding: 2px;
-  },
-  .header{
-    font-size: 40px;
-    font-weight: bold;
-  }
-`;
-
-// Inject custom CSS into the document head
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = customCSS;
-document.head.appendChild(styleSheet);
-
 const MyEditor: React.FC = () => {
   const [editorState, setEditorState] = useState<EditorState>(() => {
     const savedData = localStorage.getItem('editorContent');
     return savedData ? EditorState.createWithContent(convertFromRaw(JSON.parse(savedData))) : EditorState.createEmpty();
+  });
+
+  const [title, setTitle] = useState<string>(() => {
+    return localStorage.getItem('editorTitle') || '';
   });
 
   const handleKeyCommand = (command: string, editorState: EditorState): DraftHandleValue => {
@@ -67,7 +54,7 @@ const MyEditor: React.FC = () => {
 
     if (blockType === 'unstyled') {
       if (blockText === '#' && input === ' ') {
-        applyBlockType('HEADER', 1);
+        applyBlockType('header-one', 1);
         return 'handled';
       }
       if (blockText === '*' && input === ' ') {
@@ -123,24 +110,49 @@ const MyEditor: React.FC = () => {
   const saveContent = () => {
     const content = editorState.getCurrentContent();
     localStorage.setItem('editorContent', JSON.stringify(convertToRaw(content)));
+    localStorage.setItem('editorTitle', title);
   };
 
   useEffect(() => {
     const savedData = localStorage.getItem('editorContent');
+    const savedTitle = localStorage.getItem('editorTitle');
     if (savedData) {
       setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(savedData))));
     }
+    if (savedTitle) {
+      setTitle(savedTitle);
+    }
   }, []);
 
+  const handleEditorChange = (newState: EditorState) => {
+    setEditorState(newState);
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
   return (
-    <div>
-      <input type="text" placeholder="Title" style={{ display: 'block', width: '100%', padding: '10px', fontSize: '20px', marginBottom: '10px' }} />
-      <button onClick={saveContent} style={{ marginBottom: '10px', padding: '10px' }}>Save</button>
-      <div style={{ border: '1px solid #ccc', padding: '10px' }}>
+    <div className="my-editor w-full h-full flex flex-col justify-center items-center">
+      <div className='w-full h-[20%] flex'>
+        <div className='flex w-[80%] justify-center items-center'>
+          <input 
+            type="text" 
+            value={title} 
+            onChange={handleTitleChange} 
+            placeholder="Title" 
+            className='my-[10px] text-center border-2 border-slate-400'
+          />
+        </div>
+        <div className='flex w-[20%] justify-end items-center'>
+          <button onClick={saveContent} className='border-2 border-slate-400 text-[20px] py-[10px] px-[20px] rounded-xl '>Save</button>
+        </div>
+      </div>
+      <div className="editorContainer w-full h-[75%]">
         <Editor
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
-          onChange={setEditorState}
+          onChange={handleEditorChange}
           handleBeforeInput={handleBeforeInput}
           customStyleMap={styleMap}
           blockStyleFn={blockStyleFn}
