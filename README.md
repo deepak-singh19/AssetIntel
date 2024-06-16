@@ -1,31 +1,34 @@
-# React + TypeScript + Vite
+Draft.js Custom Editor
+A rich text editor built using React and Draft.js with custom block and inline styles, along with local storage persistence for editor content and title.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+- Rich Text Formatting: Supports bold, underline, and custom red-line styles.
+- Custom Block Types: Includes header and code block types.
+- Markdown-like Shortcuts: Apply styles using markdown-like syntax (e.g., # for headers, * for bold, etc.).
+- Persistent Storage: Saves editor content and title to local storage.
 
-Currently, two official plugins are available:
+Getting Started
+Prerequisites
+- Node.js (version 14 or later recommended)
+- npm (version 6 or later)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Installation
+Clone the repository:
+- git clone https://github.com/yourusername/draftjs-custom-editor.git
+- cd draftjs-custom-editor
 
-## Expanding the ESLint configuration
+Install dependencies:
+- npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Run the development server:
+- npm start
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# AssetIntel
+Usage
+> Typing: Start typing in the editor. Use the title input at the top to give your document a title.
+> Markdown-like Shortcuts:
+- # followed by a space to create a header.
+- * followed by a space for bold text.
+- ** followed by a space for red-line styled text.
+- *** followed by a space for underlined text.
+- ``` ` followed by a space for code blocks.
+- Saving: Click the "Save" button to store the title and content in local storage.
