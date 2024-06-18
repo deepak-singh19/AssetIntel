@@ -14,8 +14,8 @@ Prerequisites
 
 Installation
 Clone the repository:
-- git clone https://github.com/yourusername/draftjs-custom-editor.git
-- cd draftjs-custom-editor
+- git clone
+- cd AssetIntel
 
 Install dependencies:
 - npm install
